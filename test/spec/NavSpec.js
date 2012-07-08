@@ -1,5 +1,7 @@
 describe( "Nav", function() {
   
+  resizeTo(400, 780);
+
   describe( "Mobile context", function() {
 
     var $showNav, $mainMenu;
@@ -9,14 +11,8 @@ describe( "Nav", function() {
         Load in the some HTML to simulate the navigation markup
       */
       loadFixtures( "fixtures/nav.html" );
-      NAV.init();
 
-      /**
-        Fake the response from APP.getState() to return small so that we can test
-        the functionality for small sizes, independent of the current size of the
-        browser.
-      */
-      spyOn( APP, "getState" ).andReturn( "small" );
+      NAV.init();
 
       /**
         Cache some selectors that will be reused.
