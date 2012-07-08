@@ -33,51 +33,51 @@ nav {
     margin: 0;
     padding: 10px 0;
     width: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000341}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000340}}
     nav ul ul {
       background: #555555;
       display: none;
       width: auto; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000348}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000347}}
   nav li {
     padding: 10px 0;
     text-align: center;
     width: 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000353}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000352}}
     nav li li {
       float: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000358}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000357}}
   nav a {
     color: #fff;
     font-weight: bold;
     text-decoration: none; }
 
 @media all and (min-width: 410px) {
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000367}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000366}}
   #sizeTest:after {
     content: "large"; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000372}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000371}}
   nav button {
     display: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000375}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000374}}
   nav ul {
     display: block;
     float: left; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000379}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000378}}
     nav ul ul {
       background: black;
       position: absolute; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000384}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000383}}
   nav li {
     float: left;
     position: relative;
     text-align: left;
     width: auto; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000390}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000389}}
     nav li:hover ul {
       display: block; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000394}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000393}}
     nav li a {
       padding: 0 28px;
       white-space: nowrap; } }

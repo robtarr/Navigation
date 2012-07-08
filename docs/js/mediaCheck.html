@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
   <title>mediaCheck.js</title>
-  <link rel="stylesheet" href="http://jashkenas.github.com/docco/resources/docco.css">
+  <link rel="stylesheet" href="../rocco-br.css">
 </head>
 <body>
 <div id='container'>
@@ -38,20 +38,18 @@
 <p>ex.</p>
 
 <p>mediaCheck({<br>
-  media: &#39;(min-width: 500px)&#39;,<br>
-  entry: function() { ... },<br>
-  exit: function() { ... }<br>
+  media: &lsquo;(min-width: 500px)&rsquo;,<br>
+  entry: function() { &hellip; },<br>
+  exit: function() { &hellip; }<br>
 });</p>
-
 <blockquote>
-<p><strong>param</strong> Object - options  </p>
+<p><strong>param</strong> Object &ndash; options  </p>
 </blockquote>
       </td>
       <td class=code>
         <div class='highlight'><pre><span class="kd">var</span> <span class="nx">mediaCheck</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">options</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">mq</span><span class="p">,</span>
-      <span class="nx">matchMedia</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">matchMedia</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">;</span>
-  </pre></div>
+  <span class="kd">var</span> <span class="nx">mq</span><span class="p">;</span>
+    </pre></div>
       </td>
     </tr>
     <tr id='section-mqChange'>
@@ -62,10 +60,9 @@
         <h2>mqChange</h2>
 
 <p>Call the entry and exit functions if the media query matches the correct state.</p>
-
 <blockquote>
-<p><strong>param</strong> MediaQueryList - mq<br>
-<strong>params</strong> Object - options  </p>
+<p><strong>param</strong> MediaQueryList &ndash; mq<br>
+<strong>params</strong> Object &ndash; options  </p>
 </blockquote>
       </td>
       <td class=code>
@@ -79,7 +76,7 @@
     <span class="p">}</span>
   <span class="p">};</span>
   
-  <span class="k">if</span> <span class="p">(</span> <span class="nx">matchMedia</span> <span class="p">)</span> <span class="p">{</span></pre></div>
+  <span class="k">if</span> <span class="p">(</span> <span class="nb">window</span><span class="p">.</span><span class="nx">matchMedia</span> <span class="o">!==</span> <span class="kc">undefined</span> <span class="p">)</span> <span class="p">{</span></pre></div>
       </td>
     </tr>
     <tr id='section-3'>
@@ -114,7 +111,8 @@ resize event</p>
 
       </td>
       <td class=code>
-        <div class='highlight'><pre>    <span class="kd">var</span> <span class="nx">mmListener</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <div class='highlight'><pre>    <span class="kd">var</span> <span class="nx">addEvent</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span> <span class="o">?</span> <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span> <span class="o">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">mmListener</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">parts</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">media</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span> <span class="sr">/\((.*)-.*:\s*(.*)\)/</span> <span class="p">),</span>
           <span class="nx">constraint</span> <span class="o">=</span> <span class="nx">parts</span><span class="p">[</span> <span class="mi">1</span> <span class="p">],</span>
           <span class="nx">value</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span> <span class="nx">parts</span><span class="p">[</span> <span class="mi">2</span> <span class="p">],</span> <span class="mi">10</span> <span class="p">),</span>
@@ -125,7 +123,8 @@ resize event</p>
       <span class="nx">mqChange</span><span class="p">(</span> <span class="nx">fakeMatchMedia</span><span class="p">,</span> <span class="nx">options</span> <span class="p">);</span>
     <span class="p">};</span>
 
-    <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span> <span class="s2">&quot;resize&quot;</span><span class="p">,</span> <span class="nx">mmListener</span><span class="p">);</span>
+
+    <span class="nb">window</span><span class="p">.</span><span class="nx">addEvent</span><span class="p">(</span> <span class="s2">&quot;resize&quot;</span><span class="p">,</span> <span class="nx">mmListener</span><span class="p">);</span>
     <span class="nx">mmListener</span><span class="p">();</span>
   <span class="p">}</span>
 <span class="p">};</span></pre></div>
