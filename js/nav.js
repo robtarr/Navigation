@@ -21,7 +21,7 @@ var NAV = {
     e.preventDefault();
 
     if ( APP.getState() === "small" ) {
-      $( this ).siblings( "ul" ).stop().slideToggle( "fast" ).toggleClass( "open" );
+      $( this ).siblings( "ul" ).stop().slideToggle( "fast" );
     }
   },
 

@@ -1,15 +1,8 @@
 describe( "Nav", function() {
   
   describe( "Mobile context", function() {
-    /**
-      Fake the response from APP.getState() to return small so that we can test
-      the functionality for small sizes, independent of the current size of the
-      browser.
-    */
-    APP = window.APP || {};
-    APP.getState = function() { return "small"; };
 
-      var $showNav, $mainMenu;
+    var $showNav, $mainMenu;
 
     beforeEach( function() {
       /**
@@ -19,12 +12,18 @@ describe( "Nav", function() {
       NAV.init();
 
       /**
+        Fake the response from APP.getState() to return small so that we can test
+        the functionality for small sizes, independent of the current size of the
+        browser.
+      */
+      spyOn( APP, "getState" ).andReturn( "small" );
+
+      /**
         Cache some selectors that will be reused.
       */
       $showNav = $( "#showNav" );
       $mainMenu = $( "#mainMenu" );
     });
-
 
     it( "should toggle the nav when clicking on the show nav icon", function() {
       $showNav.trigger( "click" );
@@ -50,11 +49,35 @@ describe( "Nav", function() {
       */
       $showNav.trigger( "click" );
 
-      $menuLink.trigger( "click" );
-      expect( $subMenu.hasClass( "open" ) ).toBe( true );
+      /**
+        Click on the submenu and wait to verify that it opens
+      */
+      runs(function() {
+        $menuLink.trigger( "click" );
+      });
 
-      $menuLink.trigger( "click" );
-      expect( $subMenu.hasClass( "open" ) ).toBe( false );
+      waitsFor(function() {
+        return $subMenu.is( ":visible" );
+      }, "the submenu to be visible", 500 );
+
+      runs( function() {
+        expect( $subMenu.is( ":visible" ) ).toBe( true );
+      });
+
+      /**
+        Click on the submenu again and wait to verify that it closes
+      */
+      runs(function() {
+        $menuLink.trigger( "click" );
+      });
+
+      waitsFor(function() {
+        return $subMenu.is( ":hidden" );
+      }, "the submenu to be hidden", 500 );
+
+      runs( function() {
+        expect( $subMenu.is( ":hidden" ) ).toBe( true );
+      });
     });
 
     it( "should be able to clear all JS applied styles", function() {

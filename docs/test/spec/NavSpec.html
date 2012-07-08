@@ -38,10 +38,11 @@
       <td class=code>
         <div class='highlight'><pre><span class="nx">describe</span><span class="p">(</span> <span class="s2">&quot;Nav&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   
-  <span class="nx">describe</span><span class="p">(</span> <span class="s2">&quot;submenus when in the small context&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    
-    <span class="kd">var</span> <span class="nx">$subMenu</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">$menuLink</span><span class="p">;</span></pre></div>
+  <span class="nx">describe</span><span class="p">(</span> <span class="s2">&quot;Mobile context&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">$showNav</span><span class="p">,</span> <span class="nx">$mainMenu</span><span class="p">;</span>
+
+    <span class="nx">beforeEach</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></pre></div>
       </td>
     </tr>
     <tr id='section-2'>
@@ -52,7 +53,8 @@
         <p>Load in the some HTML to simulate the navigation markup</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>    <span class="nx">loadFixtures</span><span class="p">(</span> <span class="s2">&quot;fixtures/nav.html&quot;</span> <span class="p">);</span></pre></div>
+        <div class='highlight'><pre>      <span class="nx">loadFixtures</span><span class="p">(</span> <span class="s2">&quot;fixtures/nav.html&quot;</span> <span class="p">);</span>
+      <span class="nx">NAV</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span></pre></div>
       </td>
     </tr>
     <tr id='section-3'>
@@ -65,8 +67,7 @@ the functionality for small sizes, independent of the current size of the
 browser.</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>    <span class="nx">APP</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">APP</span> <span class="o">||</span> <span class="p">{};</span>
-    <span class="nx">APP</span><span class="p">.</span><span class="nx">getState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;small&quot;</span><span class="p">;</span> <span class="p">};</span></pre></div>
+        <div class='highlight'><pre>      <span class="nx">spyOn</span><span class="p">(</span> <span class="nx">APP</span><span class="p">,</span> <span class="s2">&quot;getState&quot;</span> <span class="p">).</span><span class="nx">andReturn</span><span class="p">(</span> <span class="s2">&quot;small&quot;</span> <span class="p">);</span></pre></div>
       </td>
     </tr>
     <tr id='section-4'>
@@ -74,10 +75,22 @@ browser.</p>
         <div class="pilwrap">
           <a class="pilcrow" href="#section-4">&#182;</a>
         </div>
-        <p>Get a hook to the nav item that the test will &ldquo;click&rdquo; on.</p>
+        <p>Cache some selectors that will be reused.</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>    <span class="nx">$subMenu</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;.subMenu:first&quot;</span> <span class="p">);</span></pre></div>
+        <div class='highlight'><pre>      <span class="nx">$showNav</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#showNav&quot;</span> <span class="p">);</span>
+      <span class="nx">$mainMenu</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#mainMenu&quot;</span> <span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span> <span class="s2">&quot;should toggle the nav when clicking on the show nav icon&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">$showNav</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span> <span class="p">);</span>
+      <span class="nx">expect</span><span class="p">(</span> <span class="nx">$mainMenu</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span> <span class="s2">&quot;:visible&quot;</span> <span class="p">)</span> <span class="p">).</span><span class="nx">toBe</span><span class="p">(</span> <span class="kc">true</span> <span class="p">);</span>
+
+      <span class="nx">$showNav</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span> <span class="p">);</span>      
+      <span class="nx">expect</span><span class="p">(</span> <span class="nx">$mainMenu</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span> <span class="s2">&quot;:hidden&quot;</span> <span class="p">)</span> <span class="p">).</span><span class="nx">toBe</span><span class="p">(</span> <span class="kc">true</span> <span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span> <span class="s2">&quot;should slide the sub navs open on the first click &quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></pre></div>
       </td>
     </tr>
     <tr id='section-5'>
@@ -85,22 +98,87 @@ browser.</p>
         <div class="pilwrap">
           <a class="pilcrow" href="#section-5">&#182;</a>
         </div>
+        <p>Get a hook to the nav item that the test will &ldquo;click&rdquo; on.</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>      <span class="nx">$subMenu</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;.subMenu:first&quot;</span> <span class="p">);</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-6'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-6">&#182;</a>
+        </div>
         <p>Get a hook to the subNav that the test will b elooking for.</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>      <span class="nx">$menuLink</span> <span class="o">=</span> <span class="nx">$subMenu</span><span class="p">.</span><span class="nx">siblings</span><span class="p">(</span> <span class="s2">&quot;a&quot;</span> <span class="p">);</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-7'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-7">&#182;</a>
+        </div>
+        <p>Open up the main nav</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>      <span class="nx">$showNav</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span> <span class="p">);</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-8'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-8">&#182;</a>
+        </div>
+        <p>Click on the submenu and wait to verify that it opens</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>      <span class="nx">runs</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$menuLink</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span> <span class="p">);</span>
+      <span class="p">});</span>
+
+      <span class="nx">waitsFor</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">$subMenu</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span> <span class="s2">&quot;:visible&quot;</span> <span class="p">);</span>
+      <span class="p">},</span> <span class="s2">&quot;the submenu to be visible&quot;</span><span class="p">,</span> <span class="mi">500</span> <span class="p">);</span>
+
+      <span class="nx">runs</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">expect</span><span class="p">(</span> <span class="nx">$subMenu</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span> <span class="s2">&quot;:visible&quot;</span> <span class="p">)</span> <span class="p">).</span><span class="nx">toBe</span><span class="p">(</span> <span class="kc">true</span> <span class="p">);</span>
+      <span class="p">});</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-9'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-9">&#182;</a>
+        </div>
+        <p>Click on the submenu again and wait to verify that it closes</p>
 
       </td>
       <td class=code>
-        <div class='highlight'><pre>    <span class="nx">$menuLink</span> <span class="o">=</span> <span class="nx">$subMenu</span><span class="p">.</span><span class="nx">siblings</span><span class="p">(</span> <span class="s2">&quot;a&quot;</span> <span class="p">);</span>
+        <div class='highlight'><pre>      <span class="nx">runs</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$menuLink</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span> <span class="p">);</span>
+      <span class="p">});</span>
 
-    <span class="nx">it</span><span class="p">(</span> <span class="s2">&quot;should slide the sub navs open on the first click &quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">$menuLink</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span> <span class="p">);</span>
-      <span class="nx">expect</span><span class="p">(</span> <span class="nx">$subMenu</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span> <span class="s2">&quot;:visible&quot;</span> <span class="p">)</span> <span class="p">).</span><span class="nx">toBe</span><span class="p">(</span> <span class="kc">true</span> <span class="p">);</span>
+      <span class="nx">waitsFor</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">$subMenu</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span> <span class="s2">&quot;:hidden&quot;</span> <span class="p">);</span>
+      <span class="p">},</span> <span class="s2">&quot;the submenu to be hidden&quot;</span><span class="p">,</span> <span class="mi">500</span> <span class="p">);</span>
+
+      <span class="nx">runs</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">expect</span><span class="p">(</span> <span class="nx">$subMenu</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span> <span class="s2">&quot;:hidden&quot;</span> <span class="p">)</span> <span class="p">).</span><span class="nx">toBe</span><span class="p">(</span> <span class="kc">true</span> <span class="p">);</span>
+      <span class="p">});</span>
     <span class="p">});</span>
 
-    <span class="nx">it</span><span class="p">(</span> <span class="s2">&quot;should slide sub navs closed on the second click&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">$menuLink</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span> <span class="p">);</span>
-      <span class="nx">expect</span><span class="p">(</span> <span class="nx">$subMenu</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span> <span class="s2">&quot;:visible&quot;</span> <span class="p">)</span> <span class="p">).</span><span class="nx">toBe</span><span class="p">(</span> <span class="kc">false</span> <span class="p">);</span>
+    <span class="nx">it</span><span class="p">(</span> <span class="s2">&quot;should be able to clear all JS applied styles&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">$showNav</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span> <span class="p">);</span>
+
+      <span class="nx">NAV</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+
+      <span class="nx">expect</span><span class="p">(</span> <span class="nx">$mainMenu</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span> <span class="s2">&quot;style&quot;</span> <span class="p">)</span> <span class="p">).</span><span class="nx">toBe</span><span class="p">(</span> <span class="kc">undefined</span> <span class="p">);</span>
     <span class="p">});</span>
+
   <span class="p">});</span>
+
 <span class="p">});</span></pre></div>
       </td>
     </tr>
