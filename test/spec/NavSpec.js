@@ -2,7 +2,7 @@ describe( "Nav", function() {
   
   resizeTo(400, 780);
 
-  describe( "Mobile context", function() {
+  describe( "Small context", function() {
 
     var $showNav, $mainMenu;
 
