@@ -1,89 +1,110 @@
-describe( "Nav", function() {
-  
-  resizeTo(400, 780);
+if( !window.opener ){
 
-  describe( "Small context", function() {
+  $( "body" ).prepend( "<p>This test suite needs to run in a popup window. <a id=\"runTests\" href=\"SpecRunner.html\">Run Tests</a>.</p>" );
 
-    var $showNav, $mainMenu;
+  $( "#runTests" ).on( "click", function( e ) {
+    e.preventDefault();
 
-    beforeEach( function() {
-      /**
-        Load in the some HTML to simulate the navigation markup
-      */
-      loadFixtures( "fixtures/nav.html" );
+    window.open( location.href + "?" + Math.random(), "Nav Test Suite", "scrollbars=1,resizable=1" );
+  });
 
-      NAV.init();
+} else {
 
-      /**
-        Cache some selectors that will be reused.
-      */
-      $showNav = $( "#showNav" );
-      $mainMenu = $( "#mainMenu" );
-    });
+  describe( "Nav", function() {
+    
+    describe( "in the small context", function() {
 
-    it( "should toggle the nav when clicking on the show nav icon", function() {
-      $showNav.trigger( "click" );
-      expect( $mainMenu.is( ":visible" ) ).toBe( true );
+      var $showNav, $mainMenu;
 
-      $showNav.trigger( "click" );      
-      expect( $mainMenu.is( ":hidden" ) ).toBe( true );
-    });
+      beforeEach( function() {
+        /**
+          Load in the some HTML to simulate the navigation markup
+        */
+        loadFixtures( "fixtures/nav.html" );
 
-    it( "should slide the sub navs open on the first click ", function() {
-      /**
-        Get a hook to the nav item that the test will "click" on.
-      */  
-      $subMenu = $( ".subMenu:first" );
+        NAV.init();
 
-      /**
-        Get a hook to the subNav that the test will b elooking for.
-      */
-      $menuLink = $subMenu.siblings( "a" );
-
-      /**
-        Open up the main nav
-      */
-      $showNav.trigger( "click" );
-
-      /**
-        Click on the submenu and wait to verify that it opens
-      */
-      runs(function() {
-        $menuLink.trigger( "click" );
+        /**
+          Cache some selectors that will be reused.
+        */
+        $showNav = $( "#showNav" );
+        $mainMenu = $( "#mainMenu" );
       });
 
-      waitsFor(function() {
-        return $subMenu.is( ":visible" );
-      }, "the submenu to be visible", 500 );
+      it( "should verify that the window is less than 410px.", function() {
+        runs( function() {
+          resizeTo(400, 780);
+        });
 
-      runs( function() {
-        expect( $subMenu.is( ":visible" ) ).toBe( true );
+        waitsFor( function() {
+          return document.width === 400;
+        }, "the browser widdth to be 400px.", 250 );
       });
 
-      /**
-        Click on the submenu again and wait to verify that it closes
-      */
-      runs(function() {
-        $menuLink.trigger( "click" );
+      it( "should toggle the nav when clicking on the show nav icon", function() {
+        $showNav.trigger( "click" );
+        expect( $mainMenu.is( ":visible" ) ).toBe( true );
+
+        $showNav.trigger( "click" );      
+        expect( $mainMenu.is( ":hidden" ) ).toBe( true );
       });
 
-      waitsFor(function() {
-        return $subMenu.is( ":hidden" );
-      }, "the submenu to be hidden", 500 );
+      it( "should slide the sub navs open on the first click ", function() {
+        /**
+          Get a hook to the nav item that the test will "click" on.
+        */  
+        $subMenu = $( ".subMenu:first" );
 
-      runs( function() {
-        expect( $subMenu.is( ":hidden" ) ).toBe( true );
+        /**
+          Get a hook to the subNav that the test will b elooking for.
+        */
+        $menuLink = $subMenu.siblings( "a" );
+
+        /**
+          Open up the main nav
+        */
+        $showNav.trigger( "click" );
+
+        /**
+          Click on the submenu and wait to verify that it opens
+        */
+        runs(function() {
+          $menuLink.trigger( "click" );
+        });
+
+        waitsFor(function() {
+          return $subMenu.is( ":visible" );
+        }, "the submenu to be visible", 500 );
+
+        runs( function() {
+          expect( $subMenu.is( ":visible" ) ).toBe( true );
+        });
+
+        /**
+          Click on the submenu again and wait to verify that it closes
+        */
+        runs(function() {
+          $menuLink.trigger( "click" );
+        });
+
+        waitsFor(function() {
+          return $subMenu.is( ":hidden" );
+        }, "the submenu to be hidden", 500 );
+
+        runs( function() {
+          expect( $subMenu.is( ":hidden" ) ).toBe( true );
+        });
       });
-    });
 
-    it( "should be able to clear all JS applied styles", function() {
-      $showNav.trigger( "click" );
+      it( "should be able to clear all JS applied styles", function() {
+        $showNav.trigger( "click" );
 
-      NAV.clear();
+        NAV.clear();
 
-      expect( $mainMenu.attr( "style" ) ).toBe( undefined );
+        expect( $mainMenu.attr( "style" ) ).toBe( undefined );
+      });
+
     });
 
   });
-
-});
+}
