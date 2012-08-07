@@ -1,3 +1,9 @@
+/* Responsive JS hook *******************************************************/
+#sizeTest:after {
+  content: "large";
+}
+
+
 /* Add small black hash marks on top and bottom of these elements */
 header nav ul:before, header nav ul:after {
   content: "";
@@ -16,10 +22,13 @@ header nav ul:after {
   background-position: 50% top;
 }
 
-
+.navToggle {
+  display: none;
+}
 
 /* move nav to single line */
 header nav ul {
+  display: block;
   margin-top: 20px;
   margin-left: 0;
   position: relative;

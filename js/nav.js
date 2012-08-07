@@ -8,7 +8,7 @@ var NAV = {
    Remove any styles left over from JavaScript based animations
   */
   clear: function() {
-    NAV.$mainMenu.add( NAV.$mainMenu.find( "ul" ) ).removeAttr( "style" );
+    NAV.$mainNav.add( NAV.$mainNav.find( "ul" ) ).removeAttr( "style" );
   },
 
   /**
@@ -20,7 +20,7 @@ var NAV = {
   slideSubNav: function( e ) {
     e.preventDefault();
 
-    if ( APP.getState() === "small" ) {
+    if ( dr.getState() === "small" ) {
       $( this ).siblings( "ul" ).stop().slideToggle( "fast" );
     }
   },
@@ -31,7 +31,7 @@ var NAV = {
    because the nav is hidden by default for this context.
   */
   toggleNav: function() {
-    NAV.$mainMenu.toggle();
+    NAV.$mainNav.toggle();
   },
   
   /**
@@ -42,17 +42,17 @@ var NAV = {
     /**
      Cache this for later use
     */
-    NAV.$mainMenu = $( "#mainMenu" );
+    NAV.$mainNav = $( "#mainNav" );
 
     /**
      Show/Hide the main menu for smaller screens
     */
-    $( "#showNav" ).on( "click", NAV.toggleNav );
+    $( "#navToggle" ).on( "click", NAV.toggleNav );
     
     /**
      Click handler for first level nav
     */
-    NAV.$mainMenu.find( ".subMenu" ).siblings( "a" ).on( "click", NAV.slideSubNav );
+    NAV.$mainNav.find( ".subMenu" ).siblings( "a" ).on( "click", NAV.slideSubNav );
 
     /**
      When the window changes to greater than 410px, we need to clear out any

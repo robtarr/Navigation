@@ -1,4 +1,4 @@
-/* global: describe:true, it: true, runs:true, waitsFor:true */
+/* jshint: describe:true, it: true, runs:true, waitsFor:true */
 /* global: APP:true, mediaCheck:true */
 
 if( !window.opener ){
@@ -17,7 +17,7 @@ if( !window.opener ){
     
     describe( "in the small context", function() {
 
-      var $showNav, $mainMenu;
+      var $navToggle, $mainNav;
 
       beforeEach( function() {
         /**
@@ -30,11 +30,11 @@ if( !window.opener ){
         /**
           Cache some selectors that will be reused.
         */
-        $showNav = $( "#showNav" );
-        $mainMenu = $( "#mainMenu" );
+        $navToggle = $( "#navToggle" );
+        $mainNav = $( "#mainNav" );
       });
 
-      it( "should verify that the window is less than 410px.", function() {
+      it( "should verify that the window is less than 450px.", function() {
         runs( function() {
           resizeTo(400, 780);
         });
@@ -45,11 +45,13 @@ if( !window.opener ){
       });
 
       it( "should toggle the nav when clicking on the show nav icon", function() {
-        $showNav.trigger( "click" );
-        expect( $mainMenu.is( ":visible" ) ).toBe( true );
+        expect( $mainNav.is( ":hidden" ) ).toBe( true );
 
-        $showNav.trigger( "click" );      
-        expect( $mainMenu.is( ":hidden" ) ).toBe( true );
+        $navToggle.trigger( "click" );
+        expect( $mainNav.is( ":visible" ) ).toBe( true );
+
+        $navToggle.trigger( "click" );      
+        expect( $mainNav.is( ":hidden" ) ).toBe( true );
       });
 
       it( "should slide the sub navs open on the first click ", function() {
@@ -66,7 +68,7 @@ if( !window.opener ){
         /**
           Open up the main nav
         */
-        $showNav.trigger( "click" );
+        $navToggle.trigger( "click" );
 
         /**
           Click on the submenu and wait to verify that it opens
@@ -100,18 +102,18 @@ if( !window.opener ){
       });
 
       it( "should be able to clear all JS applied styles", function() {
-        $showNav.trigger( "click" );
+        $navToggle.trigger( "click" );
 
         NAV.clear();
 
-        expect( $mainMenu.attr( "style" ) ).toBe( undefined );
+        expect( $mainNav.attr( "style" ) ).toBe( undefined );
       });
 
     });
 
     describe( "when switching from the small to large context", function() {
 
-      var $showNav, $mainMenu;
+      var $navToggle, $mainNav;
 
       beforeEach( function() {
         /**
@@ -124,8 +126,8 @@ if( !window.opener ){
         /**
           Cache some selectors that will be reused.
         */
-        $showNav = $( "#showNav" );
-        $mainMenu = $( "#mainMenu" );
+        $navToggle = $( "#navToggle" );
+        $mainNav = $( "#mainNav" );
       });
 
       it( "should verify that the window is less than 410px.", function() {
@@ -140,11 +142,11 @@ if( !window.opener ){
       });
 
       it( "should make sure that menus are still visible at large sizes", function() {
-        $showNav.trigger( "click" );
-        expect( $mainMenu.is( ":visible" ) ).toBe( true );
+        $navToggle.trigger( "click" );
+        expect( $mainNav.is( ":visible" ) ).toBe( true );
 
-        $showNav.trigger( "click" );      
-        expect( $mainMenu.is( ":hidden" ) ).toBe( true );
+        $navToggle.trigger( "click" );      
+        expect( $mainNav.is( ":hidden" ) ).toBe( true );
 
         runs( function() {
           resizeTo(600, 780);
@@ -155,7 +157,8 @@ if( !window.opener ){
         }, "the browser width should be greater than 410px.", 250 );
 
         runs(function() {
-          expect( $mainMenu.attr( "style" ) ).toBe( undefined );
+          expect( $mainNav.attr( "style" ) ).toBe( undefined );
+          expect( $mainNav.is( ":visible" ) ).toBe( true );
         });
 
       });

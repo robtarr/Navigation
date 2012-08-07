@@ -32,6 +32,12 @@ a {
   text-decoration: none;
 }
 
+/* Responsive JS hook *******************************************************/
+#sizeTest:after {
+  content: "small";
+  display: none;
+}
+
 
 /* Fonts ********************************************************************/
 nav a,
@@ -112,6 +118,7 @@ nav ul ul, nav li.home {
   display: none;
 }
 nav ul {
+  display: none;
   margin-left: 130px;  /* account for the logo */
   margin-right: 5%;
   margin-top: 10px;
