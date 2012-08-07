@@ -1,4 +1,5 @@
-/* jshint: describe:true, it: true, runs:true, waitsFor:true */
+/* global: describe:true, it: true, runs:true, waitsFor:true */
+/* global: APP:true, mediaCheck:true */
 
 if( !window.opener ){
 
