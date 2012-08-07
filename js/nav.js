@@ -20,7 +20,7 @@ var NAV = {
   slideSubNav: function( e ) {
     e.preventDefault();
 
-    if ( dr.getState() === "small" ) {
+    if ( DR.getState() === "small" ) {
       $( this ).siblings( "ul" ).stop().slideToggle( "fast" );
     }
   },

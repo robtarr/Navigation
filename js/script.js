@@ -1,4 +1,4 @@
-var dr = {
+var DR = {
   
   /** 
   ## getState
