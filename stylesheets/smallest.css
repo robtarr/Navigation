@@ -48,7 +48,8 @@ p,
 footer small,
 .listing h1,
 .listing .single h2,
-.single .read-more {
+.single .read-more,
+.navToggle {
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -95,7 +96,7 @@ nav li a,                  /* BLACK */
 
 /* Header ********************************************************************/
 header {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -105,8 +106,10 @@ header {
   text-indent: -9999px;
   width: 120px;
   height: 116px;
-  margin: 0;
+  margin: 0 0 0 20px;
   background: url(../img/bg-logo-120x116.png) left top no-repeat;
+  position: relative;
+  z-index: 1;
 }
 
 /* Primary Nav */
@@ -117,19 +120,49 @@ nav ul ul, nav li.home {
   /* hide the "shirts" sub-nav and the "home" link */
   display: none;
 }
-nav ul {
+nav > ul {
   display: none;
-  margin-left: 130px;  /* account for the logo */
+  float: right;
+  margin-left: 0;  /* account for the logo */
   margin-right: 5%;
-  margin-top: 10px;
+  margin-top: 32px;
+  width: 215px;
 }
 nav li a {
+  border-bottom: 1px solid #f1592a;
   display: block;
   line-height: 30px;
   text-align: center;
   letter-spacing: .1em;
 }
 
+nav li li a {
+  border-bottom-style: dashed;
+  font-size: .7em;
+}
+nav li li:last-child a {
+  border-bottom-style: solid;
+}
+
+.menuBar {
+  background: url(../img/bg-texture-dark.jpg);
+  float: left;
+  min-height: 32px;
+  padding-top: 5px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.navToggle {
+  -webkit-appearance: none;
+  background: transparent url(../img/show-menu.png) no-repeat 100% 6px;
+  border: none;
+  color: #fff;
+  float: right;
+  margin-right: 20px;
+  padding-right: 30px;
+}
 
 .site-description {
   text-align: center;
@@ -143,6 +176,7 @@ nav li a {
 
 .site-challenge {
   margin-top: 0;
+  padding: 0 20px;
   text-transform: uppercase;
 }
 
@@ -191,7 +225,8 @@ nav li a {
   background: #f1592a;
   padding: 0.3em 0.8em;
   display: block;
-  margin-top: 1em;
+  margin: 1em 5% 0;
+  width: 90%;
 }
 .show-me:hover {
   color: #efefef;
