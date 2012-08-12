@@ -8,7 +8,7 @@ var NAV = {
    Remove any styles left over from JavaScript based animations
   */
   clear: function() {
-    NAV.$mainNav.add( NAV.$mainNav.find( "ul" ) ).removeAttr( "style" );
+    // NAV.$mainNav.add( NAV.$mainNav.find( "ul" ) ).removeAttr( "style" );
   },
 
   /**
@@ -18,11 +18,11 @@ var NAV = {
    @param e - event that triggered this method
   */
   slideSubNav: function( e ) {
-    e.preventDefault();
+    // e.preventDefault();
 
-    if ( DR.getState() === "small" ) {
-      $( this ).siblings( "ul" ).stop().slideToggle( "fast" );
-    }
+    // if ( DR.getState() === "small" ) {
+    //   $( this ).siblings( "ul" ).stop().slideToggle( "fast" );
+    // }
   },
 
   /**
@@ -31,7 +31,7 @@ var NAV = {
    because the nav is hidden by default for this context.
   */
   toggleNav: function() {
-    NAV.$mainNav.toggle();
+    // NAV.$mainNav.toggle();
   },
   
   /**
@@ -42,26 +42,26 @@ var NAV = {
     /**
      Cache this for later use
     */
-    NAV.$mainNav = $( "#mainNav" );
+    // NAV.$mainNav = $( "#mainNav" );
 
     /**
      Show/Hide the main menu for smaller screens
     */
-    $( "#navToggle" ).on( "click", NAV.toggleNav );
+    // $( "#navToggle" ).on( "click", NAV.toggleNav );
     
     /**
      Click handler for first level nav
     */
-    NAV.$mainNav.find( ".subMenu" ).siblings( "a" ).on( "click", NAV.slideSubNav );
+    // NAV.$mainNav.find( ".subMenu" ).siblings( "a" ).on( "click", NAV.slideSubNav );
 
     /**
      When the window changes to greater than 410px, we need to clear out any
      inline styles applied via JavaScript animations.
     */
-    mediaCheck({
-      media: '(min-width: 450px)',
-      entry: NAV.clear
-    });
+    // mediaCheck({
+    //   media: '(min-width: 450px)',
+    //   entry: NAV.clear
+    // });
   }
 };
 

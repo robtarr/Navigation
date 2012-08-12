@@ -54,10 +54,37 @@ header nav li:last-child:after {
   content: "";
 }
 header nav li a {
+  border: none;
   padding: .25em 10px;
   font-size: .9em;
 }
 header nav ul ul {
+  display: none;
+  background: #f1592a;
+  position: absolute;
+  left: -15px;
+  top: 3px;
+  z-index: 100;
+}
+header nav ul li:hover ul {
+  display: block;
+}
+header nav ul ul a:hover {
+  color: #fff;
+}
+header nav ul ul li {
+  width: 100%;
+}
+header nav ul ul li a {
+  border: none;
+}
+header nav li li::after {
+  display: none;
+}
+header nav ul ul::before, header nav ul ul::after {
+  /*display: none;*/
+}
+.menuBar {
   display: none;
 }
 
