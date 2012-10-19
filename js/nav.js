@@ -2,7 +2,7 @@
  The NAV object houses all of the functionality for the main navigation
 */
 var NAV = {
-  
+
   /**
    ## clear
    Remove any styles left over from JavaScript based animations
@@ -31,13 +31,13 @@ var NAV = {
    because the nav is hidden by default for this context.
   */
   toggleNav: function() {
-    NAV.$mainNav.toggle();
+    $( "body" ).toggleClass( "nav-open" );
   },
-  
+
   /**
    ## init
    Setup the appropriate event handlers for the navigation
-  */  
+  */
   init: function() {
     /**
      Cache this for later use
@@ -48,7 +48,7 @@ var NAV = {
      Show/Hide the main menu for smaller screens
     */
     $( "#navToggle" ).on( "click", NAV.toggleNav );
-    
+
     /**
      Click handler for first level nav
     */

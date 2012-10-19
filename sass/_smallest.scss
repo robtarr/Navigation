@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+#sizeTest:after {
+  content: "small";
+  display: none;
+}
+
+body {
+  margin: 0;
+}
+
+.main-content {
+    position: absolute;
+    -webkit-transition: left .3s ease;
+       -moz-transition: left .3s ease;
+        -ms-transition: left .3s ease;
+         -o-transition: left .3s ease;
+            transition: left .3s ease;
+
+  width: 100%;
+
+  .nav-open & {
+    left: 90%;
+  }
+}
