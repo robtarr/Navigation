@@ -21,7 +21,7 @@ nav {
   width: 100%; }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rob\/Git\%20Repos\/Navigation\/sass\/nav\.scss}line{font-family:\0000325}}
   nav button {
-    background: url(../img/show-menu.jpg) no-repeat;
+    background: url(../img/show-menu.jpg) no-repeat 50%;
     border: none;
     float: left;
     height: 44px;
