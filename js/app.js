@@ -3,14 +3,19 @@
 */
 var APP = {
 
-  /** 
+  /**
    ## getState
    Determine the current context, based on mediaqueries,
    that the application is currently running in
-   
+
    @return string
   */
   getState: function() {
-    return window.getComputedStyle( document.getElementById( "sizeTest" ), ":after" ).getPropertyValue( "content" ) || "small";
+    if (window.getComputedStyle){
+      return window.getComputedStyle( document.getElementById( "sizeTest" ), ":after" ).getPropertyValue( "content" );
+    }
+    else{
+      return "small";
+    }
   }
 };
