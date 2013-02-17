@@ -11,6 +11,16 @@ var APP = {
    @return string
   */
   getState: function() {
-    return window.getComputedStyle( document.getElementById( "sizeTest" ), ":after" ).getPropertyValue( "content" ) || "small";
+    var sizes = {
+      "10px": "small",
+      "20px": "medium",
+      "30px": "large"
+    };
+
+    if (window.getComputedStyle) {
+        return sizes[window.getComputedStyle( document.getElementById( "sizeTest" )).getPropertyValue( "font-size" )];
+    } else {
+      return sizes["30px"];
+    }
   }
 };

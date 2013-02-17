@@ -7,9 +7,9 @@ $subNavBackground: #555;
           box-sizing: border-box;
 }
 
-#sizeTest:after {
-  content: "small";
-  display: none;
+#sizeTest {
+  font-size: 10px;
+  // display: none;
 }
 
 body {
@@ -63,10 +63,10 @@ nav {
   }
 }
 
-@media all and (min-width: 410px) {
+@media (min-width: 28em) {
 
-  #sizeTest:after {
-    content: "large";
+  #sizeTest {
+    font-size: 30px;
   }
 
   nav {

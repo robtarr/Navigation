@@ -7,9 +7,9 @@ var NAV = {
    ## clear
    Remove any styles left over from JavaScript based animations
   */
-   clear: function() {
+  clear: function() {
        NAV.$mainMenu.add( NAV.$mainMenu.find( "ul" ) ).removeAttr( "style" );
-   },
+  },
 
   /**
    ## slideSubNav
@@ -20,9 +20,9 @@ var NAV = {
   slideSubNav: function( e ) {
     e.preventDefault();
 
-    if ( APP.getState() === "small" ) {
+  //   if ( APP.getState() === "small" ) {
       $( this ).siblings( "ul" ).stop().slideToggle( "fast" );
-    }
+  //   }
   },
 
   /**
@@ -42,26 +42,26 @@ var NAV = {
     /**
      Cache this for later use
     */
-    NAV.$mainMenu = $( "#mainMenu" );
+    // NAV.$mainMenu = $( "#mainMenu" );
 
     /**
      Show/Hide the main menu for smaller screens
     */
-    $( "#showNav" ).on( "click", NAV.toggleNav );
+    // $( "#showNav" ).on( "click", NAV.toggleNav );
 
     /**
      Click handler for first level nav
     */
-    NAV.$mainMenu.find( ".subMenu" ).siblings( "a" ).on( "click", NAV.slideSubNav );
+    // NAV.$mainMenu.find( ".subMenu" ).siblings( "a" ).on( "click", NAV.slideSubNav );
 
     /**
      When the window changes to greater than 410px, we need to clear out any
      inline styles applied via JavaScript animations.
     */
-    mediaCheck({
-      media: '(min-width: 410px)',
-      entry: NAV.clear
-    });
+    // mediaCheck({
+    //   media: '(min-width: 410px)',
+    //   entry: NAV.clear
+    // });
   }
 };
 
